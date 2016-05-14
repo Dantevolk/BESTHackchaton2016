@@ -1,0 +1,16 @@
+{
+  "name": "besthackathon2016",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify --debug js/main.js > build.js",
+    "watch": "watchify --debug js/main.js -o build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "lodash": "^4.12.0"
+  }
+}
