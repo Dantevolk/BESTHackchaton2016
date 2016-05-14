@@ -1,0 +1,6 @@
+.auth-btn {
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  z-index: 10;
+}

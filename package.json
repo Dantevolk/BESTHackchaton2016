@@ -10,14 +10,14 @@
     "less": "lessc css/main.less css/main.css",
     "watch": "npm run watch-less & npm run watch-js",
     "lite": "lite-server",
-    "start": "npm run watch | npm run lite"
+    "start": "npm run build | npm run watch | npm run lite"
   },
   "author": "",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/Dantevolk/BESTHackchaton2016.git"
-  },
+},
   "dependencies": {
     "angular": "^1.5.5",
     "angular-route": "^1.5.5",

@@ -1,44 +1,19 @@
-var _ = require('lodash');
+var _     = require('lodash');
 var logIn = require('../services/logIn.service');
 
 Main.$inject = [
   '$scope',
-  'logIn'
-]
-function Main($scope, logIn) {
- 
-  
+  'logIn',
+  'imageController'
+];
+function Main($scope, logIn, imageController) {
   $scope.auth = logIn;
   $scope.auth.$onAuth(function(authData) {
     
     $scope.logInStatus = authData;
-  })
-  
- 
-  $scope.works = [
-    
-    {
-      title: 'First animal',
-      src: 'images/animals.jpg',
-      description: 'First picture description!'
-    },
-    
-    {
-      title: 'Cats!!!',
-      src: 'images/cat2.jpg',
-      description: 'This is description for second picture!'
-    },
-    {
-      title: 'Cat in glasses',
-      src: 'images/cat3.jpg',
-      description: 'This is description for third picture!'
-    },
-    {
-      title: 'Just another cat',
-      src: 'images/cats.jpg',
-      description: 'This is nice description for cat in glasses!'
-    }
-  ]
+  });
+
+  $scope.works = imageController.imageItems;
   
   $scope.hidePreview  = hidePreview;
   $scope.showPreview  = showPreview;
@@ -47,11 +22,16 @@ function Main($scope, logIn) {
   $scope.editWork     = editWork;
   $scope.removeWork   = removeWork;
   $scope.remove       = remove;
-  $scope.saveChanges  = saveChanges;
+  $scope.onAddImageBtnClick = onAddImageBtnClick;
+  $scope.saveChanges        = saveChanges;
   
   function hidePreview() {
     
     $scope.previewVisible = false;
+  }
+
+  function onAddImageBtnClick() {
+    $scope.editingWork = {};
   }
   
   function showPreview(e, work) {
@@ -95,20 +75,18 @@ function Main($scope, logIn) {
     
     $scope.editingWork = work;
   }
+
+  function saveChanges() {
+    console.log('save changes');
+  }
   
   function removeWork(work) {
     
     $scope.removingWork = work;
   }
-  
-  function saveChanges() {
-    
-    console.debug('Will Save changes');
-  }
-  
+
   function remove() {
-    
-    console.debug('Will remove work');
+    imageController.imageItems.$remove($scope.removingWork);
   }
 }
 
