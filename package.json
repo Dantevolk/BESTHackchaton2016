@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify --debug js/main.js > build.js",
-    "watch": "watchify --debug js/main.js -o build.js"
+    "watch": "watchify --debug js/main.js -o build.js",
+    "lite": "lite-server",
+    "start": "npm run watch | npm run lite"
   },
   "author": "",
   "license": "ISC",
-  "repository" : {
+  "repository": {
     "type": "git",
-    "url" : "https://github.com/Dantevolk/BESTHackchaton2016.git"
+    "url": "https://github.com/Dantevolk/BESTHackchaton2016.git"
   },
   "dependencies": {
     "angular": "^1.5.5",
     "lodash": "^4.12.0"
+  },
+  "devDependencies": {
+    "lite-server": "^2.2.0"
   }
 }
