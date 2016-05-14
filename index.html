@@ -4,11 +4,57 @@
     <meta charset="UTF-8">
     <title>BESTHackathon2016</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body ng-app="app" ng-controller="App">
   
+  <header>
+    
+    <div class="container text-center">
+      
+      <div class="col-md-12">
+        
+        <h1>Blog Author</h1>
+        
+        <nav>
+          <ul class="nav nav-tabs nav-justified">
+            <li role="presentation"
+                ng-class="{'active': activeTab === 'main'}"
+                ng-click="setActiveTab('main')">
+              <a href="#main">Main</a>
+            </li>
+            
+            <li role="presentation"
+                ng-class="{'active': activeTab === 'about'}"
+                ng-click="setActiveTab('about')">
+              <a href="#about">About Me</a>
+            </li>
+            
+            <li role="presentation"
+                ng-class="{'active': activeTab === 'contact'}"
+                ng-click="setActiveTab('contact')">
+              <a href="#contact">Contact</a>
+            </li>  
+          </ul>  
+        </nav> 
+      </div>
+    </div>
+  </header>
+  
   <ng-view>
   </ng-view>
+  
+  <div class="container">
+    <div class="row text-center">
+      <div class="form-group">
+        
+        <div class="col-md-12">@Best hackathon 2016</div>
+      </div>
+    </div>  
+  </div>  
+  <script src="https://use.fontawesome.com/f096cd2508.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="build.js"></script>
 </body>
-<script src="build.js"></script>
 </html>

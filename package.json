@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify --debug js/main.js > build.js",
-    "watch": "watchify --debug js/main.js -o build.js",
+    "build": "browserify --debug js/app.js > build.js",
+    "watch-js": "watchify --debug js/app.js -o build.js",
+    "watch-less": "onchange 'css/**/**/*.less' -- npm run less",
+    "less": "lessc css/main.less css/main.css",
+    "watch": "npm run watch-less & npm run watch-js",
     "lite": "lite-server",
     "start": "npm run watch | npm run lite"
   },
@@ -17,9 +20,14 @@
   },
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "angularfire": "^1.2.0",
+    "firebase": "^2.4.2",
     "lodash": "^4.12.0"
   },
   "devDependencies": {
-    "lite-server": "^2.2.0"
+    "less": "^2.7.1",
+    "lite-server": "^2.2.0",
+    "onchange": "^2.4.0"
   }
 }

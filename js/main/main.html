@@ -1,0 +1,66 @@
+<div class="preview"
+     ng-if="previewVisible">
+  
+  <div class="preview__block__close-button"
+       ng-click="hidePreview()">
+    <div class="preview__block__close-stick-1"></div>
+    <div class="preview__block__close-stick-2"></div>
+  </div>
+   
+  <div class="preview__block__arrow preview__block__arrow--left"
+       ng-click="prevWork(selectedWork)">
+    
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  </div>
+  
+  <div class="preview__block__arrow preview__block__arrow--right"
+       ng-click="nextWork(selectedWork)">
+    
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+  </div> 
+   
+  <div class="preview__block">
+   
+    <div class="preview__bock__image">
+      
+      <img ng-src="{{selectedWork.src}}" 
+           alt="{{selectedWork.title}}">
+    </div>
+      
+    <div class="preview__block__title">
+      
+      <h4>
+        {{selectedWork.title}}
+      </h4>
+    </div> 
+    
+    <div class="preview__block__description">
+      
+      {{selectedWork.description}}
+    </div>
+  </div>
+</div>
+
+<div class="container text-center">
+ 
+  <div class="row">
+    
+    <div class="col-md-12">
+     
+     <div class="works">
+       
+       <div class="works__work"
+            ng-click="showPreview($event, work)"
+            ng-repeat="work in works">
+         
+         <button class="btn btn-warning works__work__edit"
+                 ng-click="editWork(work)">Edit</button>
+         <button class="btn btn-danger works__work__remove"
+                 ng-click="removeWork(work)">Delete</button>        
+         <img ng-src="{{work.src}}" 
+              class="works__work__image">
+       </div>
+     </div> 
+    </div>
+  </div>
+</div>
