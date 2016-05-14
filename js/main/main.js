@@ -36,6 +36,8 @@ function Main($scope) {
   $scope.nextWork     = nextWork;
   $scope.editWork     = editWork;
   $scope.removeWork   = removeWork;
+  $scope.remove       = remove;
+  $scope.saveChanges  = saveChanges;
   
   function hidePreview() {
     
@@ -81,14 +83,23 @@ function Main($scope) {
   
   function editWork(work) {
     
-    console.debug('Edditing work - ', work.title);
+    $scope.editingWork = work;
   }
   
   function removeWork(work) {
     
-    console.debug('Removing work - ', work.title);
+    $scope.removingWork = work;
   }
   
+  function saveChanges() {
+    
+    console.debug('Will Save changes');
+  }
+  
+  function remove() {
+    
+    console.debug('Will remove work');
+  }
 }
 
 module.exports = Main;
