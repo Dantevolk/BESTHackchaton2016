@@ -3,25 +3,60 @@ var Firebase    = require('firebase');
 var angularFire = require('angularfire');
 var ngRoute     = require('angular-route');
 
-var App         = require('./app/app');
-var About       = require('./about/about');
-var Main        = require('./main/main');
-var Contact     = require('./contact/contact');
+//Controllers
+var App         = require('./components/app/app');
+var About       = require('./components/about/about');
+var Main        = require('./components/main/main');
+var Contact     = require('./components/contact/contact');
 
+//Services
+var logIn       = require('./components/services/logIn.service');
 
 angular.module('app', ['ngRoute', 'firebase']);
 
 angular.module('app')
-  .constant('config', {templates: './js/'})
-  .controller('App', ['$scope', function($scope) {
+  .constant('config', {templates: './js/components/'})
+  .service('logIn', logIn)
+  .controller('App', ['$scope', 'logIn', function($scope, logIn) {
     
-    $scope.activeTab = sessionStorage.getItem('tab') || 'main';
+    var user = new Firebase('https://hackathon-try-catch.firebaseio.com/');
+    
+    $scope.activeTab    = sessionStorage.getItem('tab') || 'main';
+    $scope.auth         = logIn;
+    $scope.auth.$onAuth(function(dataStatus) {
+      
+      $scope.logInStatus = dataStatus;
+    })
+    
     $scope.setActiveTab = setActiveTab;
+    $scope.logUserIn    = logUserIn;
     
     function setActiveTab(tab) {
       
       $scope.activeTab = tab;
       sessionStorage.setItem('tab', tab);
+    }
+    
+    function logUserIn() {
+      
+      user.authWithPassword({
+        
+        email: $scope.user.email,
+        password: $scope.user.password
+      }, function(err, data) {
+        
+        if (err) {
+          
+          console.debug('Error', err);
+        } else {
+          
+          document.getElementById('closeLoginModalBtn').click();
+          console.debug('User was logged in', data);
+        }
+      }, {
+        
+        remember: 'sessionOnly'
+      })
     }
   }])
   .controller('About', About)

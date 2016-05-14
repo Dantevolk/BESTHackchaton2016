@@ -1,11 +1,20 @@
 var _ = require('lodash');
+var logIn = require('../services/logIn.service');
 
 Main.$inject = [
-  '$scope'
+  '$scope',
+  'logIn'
 ]
-function Main($scope) {
+function Main($scope, logIn) {
+ 
   
-  $scope.title = 12;
+  $scope.auth = logIn;
+  $scope.auth.$onAuth(function(authData) {
+    
+    $scope.logInStatus = authData;
+  })
+  
+ 
   $scope.works = [
     
     {
@@ -30,6 +39,7 @@ function Main($scope) {
       description: 'This is nice description for cat in glasses!'
     }
   ]
+  
   $scope.hidePreview  = hidePreview;
   $scope.showPreview  = showPreview;
   $scope.prevWork     = prevWork;

@@ -8,6 +8,58 @@
 </head>
 <body ng-app="app" ng-controller="App">
   
+  <div id="login-modal" 
+       class="modal fade"
+       role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" 
+                  class="close" 
+                  data-dismiss="modal">&times;</button>
+                  
+          <h4 class="modal-title">
+            Login
+          </h4>
+        </div>
+        
+        <div class="modal-body">
+          <div class="form-group">
+          <b>Email:</b>
+          <input type="email"
+                 ng-model="user.email"
+                 class="form-control">  
+          </div>
+          <div class="form-group">
+            <b>Password:</b>
+            <input type="text"
+                  ng-model="user.password"
+                  class="form-control">  
+          </div>       
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"
+                  ng-disabled="!user.email || !user.password"
+                  ng-click="logUserIn()">
+                  
+                  Login
+          </button>
+          <button type="button"
+                  id="closeLoginModalBtn" 
+                  class="btn btn-default" 
+                  data-dismiss="modal">
+                  
+                  Close
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  
   <header>
     
     <div class="container text-center">
@@ -40,6 +92,21 @@
       </div>
     </div>
   </header>
+  
+  <button class="btn btn-primary auth-btn"
+          ng-if="!logInStatus"
+          data-target="#login-modal"
+          data-toggle="modal">
+          LogIn
+    <span class="glyphicon glyphicon-log-in"></span>
+  </button>
+  
+  <button class="btn btn-primary auth-btn"
+          ng-if="logInStatus"
+          ng-click="auth.$unauth()">
+          LogOut
+    <span class="glyphicon glyphicon-log-out"></span>
+  </button>
   
   <ng-view>
   </ng-view>

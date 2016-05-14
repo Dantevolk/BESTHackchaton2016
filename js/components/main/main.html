@@ -170,10 +170,12 @@
          <button class="btn btn-warning works__work__edit"
                  data-toggle="modal"
                  data-target="#edit-modal"
+                 ng-if="logInStatus"
                  ng-click="editWork(work)">Edit</button>
          <button class="btn btn-danger works__work__remove"
                  data-toggle="modal"
                  data-target="#remove-modal"
+                 ng-if="logInStatus"  
                  ng-click="removeWork(work)">Delete</button>        
          <img ng-src="{{work.src}}" 
               class="works__work__image">
