@@ -5,9 +5,43 @@
     <title>BESTHackathon2016</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body ng-app="app" ng-controller="App">
-    <input type="text" ng-model="name">
-    <p>Hello {{name}}</p>
+<body ng-app="app">
+
+    <div ng-controller="textController">
+        <form ng-submit="addTextItem()">
+            <input ng-model="newTextItemText" />
+            <button type="submit">Add Message</button>
+        </form>
+        <ul>
+            <li ng-repeat="item in textItems">
+                {{item.text}}
+                <input ng-model="item.text"/>
+                <button ng-click="textItems.$save(item)">Edit Message</button>
+                <button ng-click="textItems.$remove(item)"> Delete Message </button>
+            </li>
+        </ul>
+        <br /><br /><br /><br />
+    </div>
+
+    <div ng-controller="imageController">
+        <input id="fileInput" type="file" fileread="uploadme" loader="uploadme.showLoader" accept="image/*" style="display: none" /><!--multiple-->
+        <button ng-click="onSelectImgClick()">Select images</button>
+
+        <p ng-hide="!uploadme.showLoader">......</p>
+
+        <p ng-repeat="file in uploadme">{{file.src}}</p>
+
+        <button ng-click="addImage()" ng-disabled="!uploadme.length">Upload image</button>
+
+        <ul>
+            <li ng-repeat="image in imageItems">
+                <img ng-src="{{image.src}}">
+                <button ng-click="imageItems.$remove(image)"> Delete Message </button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- --------------------------- -->
 </body>
 <script src="build.js"></script>
 </html>
