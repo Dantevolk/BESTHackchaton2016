@@ -3,12 +3,13 @@ var Firebase    = require('firebase');
 var angularFire = require('angularfire');
 var ngRoute     = require('angular-route');
 
+
 //Controllers
 var App         = require('./components/app/app');
 var About       = require('./components/about/about');
 var Main        = require('./components/main/main');
 var Contact     = require('./components/contact/contact');
-
+var fileReader  = require('./directives/fileReader.js');
 //Services
 var logIn       = require('./components/services/logIn.service');
 
@@ -61,10 +62,8 @@ angular.module('app')
   }])
   .controller('About', About)
   .controller('Contact', Contact)
-  .controller('Main', Main);
-
-angular.module('app')
-.config(['$routeProvider', 'config', function($routeProvider, config) {
+  .controller('Main', Main)
+  .config(['$routeProvider', 'config', function($routeProvider, config) {
   
   $routeProvider
     .when('/main', {
@@ -87,12 +86,6 @@ angular.module('app')
       redirectTo: '/main'
     })
 
-}]);
-
-// angular.module('app')
-//   .service('auth', ['$firebaseAuth', function($firebaseAuth) {
-    
-//     var auth = new Firebase('https://hackathon-try-catch.firebaseio.com');
-//     return $firebaseAuth(auth);
-//   }])
+}])
+    .directive("fileread", fileReader);
 

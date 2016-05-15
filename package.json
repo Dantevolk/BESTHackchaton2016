@@ -10,7 +10,7 @@
     "less": "lessc css/main.less css/main.css",
     "watch": "npm run watch-less & npm run watch-js",
     "lite": "lite-server",
-    "start": "npm run watch | npm run lite"
+    "start": "npm run build | npm run watch | npm run lite"
   },
   "author": "",
   "license": "ISC",
