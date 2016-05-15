@@ -4,18 +4,99 @@
     
     <div class="col-md-12">
       
-      <img src="images/user.jpg" 
-           alt="user avatar">
-    </div>
-    <h3>About Me</h3>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quas alias consectetur eveniet est sunt voluptas tenetur. Vero necessitatibus accusantium optio aut quaerat, possimus voluptatibus, molestias a eos similique, explicabo.
-        </p>
+      <div class="img-wrapper">
+        <div class="img-wrapper-edit">
+          <img ng-src="{{user_profile_avatar.image.src}}"
+               ng-class="{'avatar--faded': logInStatus}"
+               alt="user avatar">
+        </div>     
+        
+        <div class="avatar-change-form"
+             ng-if="logInStatus">
+          <input type="file"
+                 id="avatar"
+                 class="form-control"
+                 fileread="uploadme"
+                 loader="uploadme.showLoader"
+                 accept="image/*"
+                 style="display: none">
+          <button class="btn btn-primary btn-lg change-avatar-button"
+                  ng-click="changeAvatar()">
+            Choose Another Photo
+          </button>       
+        </div>
+        
+        <button class="btn btn-success save-changes"
+                ng-if="logInStatus"
+                ng-click="saveAvatar()">
+          <span class="glyphicon glyphicon-floppy-disk"></span>
+          Save
+        </button>
       </div>
-      <div class="col-md-4"></div>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          
+          <p ng-repeat="info in profile_sections"
+             ng-if="!logInStatus && profile_sections.length">
+            <h3>
+              {{info.header}}
+            </h3>
+            <p>
+              {{info.text}}
+            </p>            
+          </p>
+          
+          <div ng-repeat="info in profile_sections"
+               class="form-group"
+               ng-if="logInStatus && profile_sections.length">
+            <hr>
+            <b>Header:</b>
+            <input type="text"
+                   class="form-control"
+                   ng-model="info.header">
+             
+             <b>Content:</b>
+             <textarea rows="3"
+                       class="form-control"
+                       ng-model="info.text">
+             </textarea>
+          </div>
+          
+          <div class="alert alert-danger"
+               ng-if="!logInStatus && !profile_sections.length">
+            Author didn't provide personal info
+          </div>
+          
+          <div class="alert alert-danger"
+               ng-if="logInStatus && !profile_sections.length">
+               
+               You didn't provide any personal info, press
+               
+               <span class="label label-primary">
+                 Add section
+               </span> key, to add new section
+          </div>
+          
+          <button class="btn btn-primary"
+                  ng-if="logInStatus"
+                  ng-click="addSection()">
+            
+            <span class="glyphicon glyphicon-plus"></span>
+            Add section
+          </button>
+          
+          <button class="btn btn-success"
+                  ng-if="logInStatus"
+                  ng-click="saveSections()">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Save
+          </button>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
     </div>
   </div>
 </div>

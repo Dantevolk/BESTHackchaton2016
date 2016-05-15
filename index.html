@@ -65,7 +65,23 @@
       
       <div class="col-md-12">
         
-        <h1>Blog Author</h1>
+        <h1>
+          
+          <span ng-if="!logInStatus" ng-bind="profile_title.$value"></span>
+          
+          <input type="text"
+                 ng-model="profile_title.$value" 
+                 ng-if="logInStatus">
+          
+          <button class="btn btn-success edit-blog-title"
+                  ng-if="logInStatus"
+                  ng-click="saveTitle()">
+          
+            <span class="glyphicon glyphicon-ok"></span>
+            Save
+          </button>
+        </h1>
+        
         
         <nav>
           <ul class="nav nav-tabs nav-justified">

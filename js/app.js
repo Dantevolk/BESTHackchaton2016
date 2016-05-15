@@ -18,9 +18,10 @@ angular.module('app', ['ngRoute', 'firebase']);
 angular.module('app')
   .constant('config', {templates: './js/components/'})
   .service('logIn', logIn)
-  .controller('App', ['$scope', 'logIn', function($scope, logIn) {
+  .controller('App', ['$scope', 'logIn', '$firebaseObject', function($scope, logIn, $firebaseObject) {
     
-    var user = new Firebase('https://hackathon-try-catch.firebaseio.com/');
+    var user          = new Firebase('https://hackathon-try-catch.firebaseio.com');
+    var profile_title = new Firebase('https://hackathon-try-catch.firebaseio.com/profile-title');
     
     $scope.activeTab    = sessionStorage.getItem('tab') || 'main';
     $scope.auth         = logIn;
@@ -29,8 +30,10 @@ angular.module('app')
       $scope.logInStatus = dataStatus;
     })
     
+    $scope.profile_title = $firebaseObject(profile_title);
     $scope.setActiveTab = setActiveTab;
     $scope.logUserIn    = logUserIn;
+    $scope.saveTitle    = saveTitle;
     
     function setActiveTab(tab) {
       
@@ -58,6 +61,12 @@ angular.module('app')
         
         remember: 'sessionOnly'
       })
+    }
+   
+    function saveTitle() {
+      
+      $scope.titleStatus = false;
+      $scope.profile_title.$save();      
     }
   }])
   .controller('About', About)

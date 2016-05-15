@@ -18,30 +18,6 @@ function Main($scope, logIn, $firebaseArray) {
   })
   
  
-  $scope.works = [
-    
-    {
-      title: 'First animal',
-      src: 'images/animals.jpg',
-      description: 'First picture description!'
-    },
-    
-    {
-      title: 'Cats!!!',
-      src: 'images/cat2.jpg',
-      description: 'This is description for second picture!'
-    },
-    {
-      title: 'Cat in glasses',
-      src: 'images/cat3.jpg',
-      description: 'This is description for third picture!'
-    },
-    {
-      title: 'Just another cat',
-      src: 'images/cats.jpg',
-      description: 'This is nice description for cat in glasses!'
-    }
-  ]
   
   $scope.hidePreview  = hidePreview;
   $scope.showPreview  = showPreview;
@@ -52,6 +28,7 @@ function Main($scope, logIn, $firebaseArray) {
   $scope.remove       = remove;
   $scope.saveChanges  = saveChanges;
   $scope.clearData    = clearData;
+  $scope.updateWork   = updateWork;
   
   function hidePreview() {
     
@@ -149,6 +126,16 @@ function Main($scope, logIn, $firebaseArray) {
       $scope.newImageTitle = '';
     });
   };
+  
+  function updateWork() {
+    
+    $scope.imageItems.$save($scope.editingWork);  
+  }
+  
+  function updateImage() {
+    
+    
+  }
 }
 
 module.exports = Main;

@@ -128,14 +128,14 @@
         <div class="form-group">
           <b>Work Description:</b>
           <input type="text"
-                 ng-model="editingWork.description"
+                 ng-model="editingWork.desc"
                  class="form-control">  
         </div>       
       </div>
       <div class="modal-footer">
         <button class="btn btn-success"
                 data-dismiss="modal"
-                ng-click="addImage()">
+                ng-click="updateWork()">
           Save Changes
         </button>
         <button type="button" 
@@ -227,7 +227,7 @@
     
     <div class="preview__block__description">
       
-      {{selectedWork.description}}
+      {{selectedWork.desc}}
     </div>
   </div>
 </div>
